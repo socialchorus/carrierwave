@@ -37,7 +37,7 @@ module CarrierWave
 
         def file
           if @file.blank?
-            @file = Kernel.open(@uri.to_s, "User-Agent" => "CarrierWave/#{CarrierWave::VERSION}")
+            @file = Kernel.open(@uri.to_s, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE})
             @file = @file.is_a?(String) ? StringIO.new(@file) : @file
           end
           @file
