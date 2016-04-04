@@ -17,6 +17,7 @@ module CarrierWave
       # [String] the location where this file is accessible via a url
       #
       def url(options = {})
+        Rails.logger.info "CarrierWave debug: #{file.as_json}"
         if file.respond_to?(:url) and not file.url.blank?
           file.method(:url).arity == 0 ? file.url : file.url(options)
         elsif file.respond_to?(:path)
